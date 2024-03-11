@@ -10,11 +10,11 @@ public class Main {
 
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        long min = Long.MAX_VALUE;
-        long max = Long.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
 
         while(st.hasMoreTokens()){
-            long num = Integer.parseInt(st.nextToken());
+            int num = Integer.parseInt(st.nextToken());
             if(max<num) max=num;
             if(min>num) min=num;
         }
