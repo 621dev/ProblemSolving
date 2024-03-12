@@ -48,17 +48,19 @@ public class Main {
     public static int findMinSum(int[][] board) {
         int row = board.length;
         int column = board[0].length;
+        int[][] sum = new int[row + 1][column + 1];
+
+        for (int i = 1; i <= row; i++) {
+            for (int j = 1; j <= column; j++) {
+                sum[i][j] = sum[i - 1][j] + sum[i][j - 1] - sum[i - 1][j - 1] + board[i - 1][j - 1];
+            }
+        }
 
         int minSum = Integer.MAX_VALUE;
-        for (int i = 0; i <= row - 8; i++) {
-            for (int j = 0; j <= column - 8; j++) {
-                int sum = 0;
-                for (int x = i; x < i + 8; x++) {
-                    for (int y = j; y < j + 8; y++) {
-                        sum += board[x][y];
-                    }
-                }
-                minSum = Math.min(minSum, sum);
+        for (int i = 8; i <= row; i++) {
+            for (int j = 8; j <= column; j++) {
+                int currentSum = sum[i][j] - sum[i - 8][j] - sum[i][j - 8] + sum[i - 8][j - 8];
+                minSum = Math.min(minSum, currentSum);
             }
         }
         return minSum;
